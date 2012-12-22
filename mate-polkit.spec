@@ -4,7 +4,7 @@ Version:	1.5.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.5/%name-%version.tar.xz
+Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	5639bec0c7667b5be9bbf2bac2931b31
 URL:		http://mate-desktop.org/
 BuildRequires:	gobject-introspection-devel
