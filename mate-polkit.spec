@@ -64,8 +64,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/xdg/autostart/polkit-mate-authentication-agent-1.desktop
 %attr(755,root,root) %{_libdir}/libpolkit-gtk-mate-1.so.*.*.*
 %ghost %{_libdir}/libpolkit-gtk-mate-1.so.0
+%attr(755,root,root) %{_libdir}/polkit-mate-authentication-agent-1
 %{_libdir}/girepository-1.0/PolkitGtkMate-1.0.typelib
-%{_libexecdir}/polkit-mate-authentication-agent-1
 
 %files devel
 %defattr(644,root,root,755)
