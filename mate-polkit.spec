@@ -4,13 +4,15 @@ Version:	1.5.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-URL:		http://mate-desktop.org/
 Source0:	http://pub.mate-desktop.org/releases/1.5/%name-%version.tar.xz
 # Source0-md5:	5639bec0c7667b5be9bbf2bac2931b31
+URL:		http://mate-desktop.org/
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	mate-common
 BuildRequires:	polkit-devel
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 # needed for gobject-introspection support somehow,
 # https://bugzilla.redhat.com/show_bug.cgi?id=847419#c17 asserts this is a bug (elsewhere)
 # but I'm not entirely sure -- rex
@@ -23,8 +25,8 @@ Integrates polkit with the MATE Desktop environment
 
 %package devel
 Summary:	Integrates polkit with the MATE Desktop environment
-Requires:	%{name} = %{version}-%{release}
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development libraries for mate-polkit
