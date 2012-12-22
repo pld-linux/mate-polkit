@@ -33,9 +33,9 @@ Development libraries for mate-polkit
 
 %prep
 %setup -q
-NOCONFIGURE=1 ./autogen.sh --disable-static
 
 %build
+NOCONFIGURE=1 ./autogen.sh --disable-static
 %configure \
 	--disable-static
 
@@ -46,9 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpolkit-gtk-mate-1.la
 
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -fv {} ';'
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
