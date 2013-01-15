@@ -6,11 +6,11 @@ License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	5639bec0c7667b5be9bbf2bac2931b31
-URL:		http://mate-desktop.org/
-BuildRequires:	gobject-introspection-devel
-BuildRequires:	gtk+2-devel
+URL:		http://wiki.mate-desktop.org/mate-polkit
+BuildRequires:	gobject-introspection-devel >= 0.6.2
+BuildRequires:	gtk+2-devel >= 2:2.17.1
 BuildRequires:	mate-common
-BuildRequires:	polkit-devel
+BuildRequires:	polkit-devel >= 0.97
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 # needed for gobject-introspection support somehow,
@@ -29,13 +29,13 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Development libraries for mate-polkit
+Development libraries for mate-polkit.
 
 %prep
 %setup -q
 
 %build
-NOCONFIGURE=1 ./autogen.sh --disable-static
+NOCONFIGURE=1 ./autogen.sh
 %configure \
 	--disable-static
 
