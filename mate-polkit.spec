@@ -1,11 +1,11 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Name:		mate-polkit
-Version:	1.5.0
+Version:	1.6.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
-# Source0-md5:	5639bec0c7667b5be9bbf2bac2931b31
+Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
+# Source0-md5:	a65f909ea2c724ab50a893ba2f8db46c
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+2-devel >= 2:2.17.1
