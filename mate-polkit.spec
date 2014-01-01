@@ -1,15 +1,21 @@
+# TODO: recheck cairo-gobject BR
 Summary:	Integrates polkit authentication for MATE desktop
+Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.6.0
+Version:	1.6.1
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	a65f909ea2c724ab50a893ba2f8db46c
+# Source0-md5:	12f9171d8c7bf26b815c2274bf64fd46
 URL:		http://wiki.mate-desktop.org/mate-polkit
+BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+2-devel >= 2:2.17.1
+BuildRequires:	gtk-doc >= 1.3
+BuildRequires:	intltool >= 0.35.0
 BuildRequires:	mate-common
+BuildRequires:	pkgconfig
 BuildRequires:	polkit-devel >= 0.97
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -17,26 +23,39 @@ BuildRequires:	xz
 # https://bugzilla.redhat.com/show_bug.cgi?id=847419#c17 asserts this is a bug (elsewhere)
 # but I'm not entirely sure -- rex
 BuildRequires:	cairo-gobject-devel
+Requires:	gtk+2 >= 2:2.17.1
+Requires:	polkit-libs >= 0.97
 #Provides:	PolicyKit-authentication-agent
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Integrates polkit with the MATE Desktop environment
+MATE polkit integrates polkit with the MATE Desktop environment.
+MATE polkit is a fork of GNOME polkit.
+
+%description -l pl.UTF-8
+Integracja uwierzytelniania polkit ze środowiskiem MATE. MATE polkit
+to odgałęzienie pakietu GNOME polkit.
 
 %package devel
-Summary:	Integrates polkit with the MATE Desktop environment
+Summary:	Development files for mate-polkit library
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki mate-polkit
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	gtk+2-devel >= 2:2.17.1
+Requires:	polkit-devel >= 0.97
 
 %description devel
-Development libraries for mate-polkit.
+Development files for mate-polkit library.
+
+%description devel -l pl.UTF-8
+Pliki programistyczne biblioteki mate-polkit.
 
 %prep
 %setup -q
 
 %build
-NOCONFIGURE=1 ./autogen.sh
 %configure \
+	--disable-silent-rules \
 	--disable-static
 
 %{__make}
@@ -58,18 +77,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-# yes, license really is LGPLv2+, despite included COPYING is about GPL, poke upstreamo
-# to include COPYING.LIB here instead  -- rex
-%doc AUTHORS COPYING README
-%{_sysconfdir}/xdg/autostart/polkit-mate-authentication-agent-1.desktop
+%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_libdir}/libpolkit-gtk-mate-1.so.*.*.*
-%ghost %{_libdir}/libpolkit-gtk-mate-1.so.0
-%attr(755,root,root) %{_libdir}/polkit-mate-authentication-agent-1
+%attr(755,root,root) %ghost %{_libdir}/libpolkit-gtk-mate-1.so.0
 %{_libdir}/girepository-1.0/PolkitGtkMate-1.0.typelib
+%attr(755,root,root) %{_libexecdir}/polkit-mate-authentication-agent-1
+%{_sysconfdir}/xdg/autostart/polkit-mate-authentication-agent-1.desktop
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libpolkit-gtk-mate-1.so
-%{_pkgconfigdir}/polkit-gtk-mate-1.pc
+%attr(755,root,root) %{_libdir}/libpolkit-gtk-mate-1.so
 %{_includedir}/polkit-gtk-mate-1
 %{_datadir}/gir-1.0/PolkitGtkMate-1.0.gir
+%{_pkgconfigdir}/polkit-gtk-mate-1.pc
