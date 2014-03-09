@@ -2,18 +2,21 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.6.1
+Version:	1.8.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	12f9171d8c7bf26b815c2274bf64fd46
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	bd7dfb225e1ba6aac3c5752d496071d8
 URL:		http://wiki.mate-desktop.org/mate-polkit
+BuildRequires:	autoconf
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+2-devel >= 2:2.17.1
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	intltool >= 0.35.0
+BuildRequires:	libtool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig
 BuildRequires:	polkit-devel >= 0.97
@@ -54,6 +57,11 @@ Pliki programistyczne biblioteki mate-polkit.
 %setup -q
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules \
 	--disable-static
@@ -66,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libpolkit-gtk-mate-1.la
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 
 %find_lang %{name}
 
