@@ -15,7 +15,7 @@ Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	gettext-devel >= 0.10.40
+BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.17.1}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
