@@ -6,16 +6,17 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.8.0
-Release:	2
+Version:	1.10.0
+Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	bd7dfb225e1ba6aac3c5752d496071d8
+Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
+# Source0-md5:	cfdfab5149680e2bd53630da657521b1
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-tools >= 0.10.40
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.17.1}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
@@ -31,6 +32,7 @@ BuildRequires:	xz
 # https://bugzilla.redhat.com/show_bug.cgi?id=847419#c17 asserts this is a bug (elsewhere)
 # but I'm not entirely sure -- rex
 BuildRequires:	cairo-gobject-devel
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.17.1}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	polkit-libs >= 0.97
@@ -50,6 +52,7 @@ Summary:	Development files for mate-polkit library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki mate-polkit
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.17.1}
 %{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
 Requires:	polkit-devel >= 0.97
