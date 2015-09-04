@@ -3,23 +3,25 @@
 # Conditional build:
 %bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 
+%define	gtk2_ver	2:2.24.0
+%define	gtk3_ver	3.0.0
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.10.0
+Version:	1.10.1
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	cfdfab5149680e2bd53630da657521b1
+# Source0-md5:	f4653234551039429bb5a3d8f91da013
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.17.1}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
+%{!?with_gtk3:BuildRequires:	gtk+2-devel >= %{gtk2_ver}}
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= %{gtk3_ver}}
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libtool
@@ -33,15 +35,15 @@ BuildRequires:	xz
 # but I'm not entirely sure -- rex
 BuildRequires:	cairo-gobject-devel
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.17.1}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+%{!?with_gtk3:Requires:	gtk+2 >= %{gtk2_ver}}
+%{?with_gtk3:Requires:	gtk+3 >= %{gtk3_ver}}
 Requires:	polkit-libs >= 0.97
 #Provides:	PolicyKit-authentication-agent
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-MATE polkit integrates polkit with the MATE Desktop environment.
-MATE polkit is a fork of GNOME polkit.
+MATE polkit integrates polkit with the MATE Desktop environment. MATE
+polkit is a fork of GNOME polkit.
 
 %description -l pl.UTF-8
 Integracja uwierzytelniania polkit ze środowiskiem MATE. MATE polkit
@@ -53,8 +55,8 @@ Summary(pl.UTF-8):	Pliki programistyczne biblioteki mate-polkit
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.17.1}
-%{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
+%{!?with_gtk3:Requires:	gtk+2-devel >= %{gtk2_ver}}
+%{?with_gtk3:Requires:	gtk+3-devel >= %{gtk3_ver}}
 Requires:	polkit-devel >= 0.97
 
 %description devel
