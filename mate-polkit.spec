@@ -1,6 +1,6 @@
-# TODO: recheck cairo-gobject BR
 #
 # Conditional build:
+%bcond_without	appindicator	# application indicators support
 %bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 
 %define	gtk2_ver	2:2.24.0
@@ -24,20 +24,26 @@ BuildRequires:	gobject-introspection-devel >= 0.6.2
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= %{gtk3_ver}}
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	intltool >= 0.35.0
+%if %{with appindicator}
+%{!?with_gtk3:BuildRequires:	libappindicator-gtk2-devel >= 0.0.13}
+%{?with_gtk3:BuildRequires:	libappindicator-gtk3-devel >= 0.0.13}
+%endif
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig
 BuildRequires:	polkit-devel >= 0.97
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-# needed for gobject-introspection support somehow,
-# https://bugzilla.redhat.com/show_bug.cgi?id=847419#c17 asserts this is a bug (elsewhere)
-# but I'm not entirely sure -- rex
+# needed for gobject-introspection support (Gtk-2.0.gir -> Gdk-2.0.gir -> cairo-1.0.gir, which requires libcairo-gobject.so)
 BuildRequires:	cairo-gobject-devel
 Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= %{gtk2_ver}}
 %{?with_gtk3:Requires:	gtk+3 >= %{gtk3_ver}}
 Requires:	polkit-libs >= 0.97
+%if %{with appindicator}
+%{!?with_gtk3:Requires:	libappindicator-gtk2 >= 0.0.13}
+%{?with_gtk3:Requires:	libappindicator-gtk3 >= 0.0.13}
+%endif
 #Provides:	PolicyKit-authentication-agent
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -75,6 +81,7 @@ Pliki programistyczne biblioteki mate-polkit.
 %{__autoheader}
 %{__automake}
 %configure \
+	%{!?with_appindicator:--disable-appindicator} \
 	--disable-silent-rules \
 	--disable-static \
 	%{?with_gtk3:--with-gtk=3.0}
