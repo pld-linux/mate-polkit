@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libpolkit-gtk-mate-1.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpolkit-gtk-mate-1.so.0
 %{_libdir}/girepository-1.0/PolkitGtkMate-1.0.typelib
