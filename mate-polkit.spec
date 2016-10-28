@@ -30,7 +30,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	polkit-devel >= 0.97
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-# needed for gobject-introspection support (Gtk-2.0.gir -> Gdk-2.0.gir -> cairo-1.0.gir, which requires libcairo-gobject.so)
+# needed for gobject-introspection support (Gtk-3.0.gir -> Gdk-3.0.gir -> cairo-1.0.gir, which requires libcairo-gobject.so)
 BuildRequires:	cairo-gobject-devel
 Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= %{gtk3_ver}
