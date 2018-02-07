@@ -2,21 +2,21 @@
 # Conditional build:
 %bcond_without	appindicator	# application indicators support
 
-%define	gtk3_ver	3.14.0
+%define	gtk3_ver	3.22.0
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.18.2
+Version:	1.20.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
-# Source0-md5:	2a54ba6243c54a8066177c0d72c771cd
+Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
+# Source0-md5:	f5932028a95878c14bd0b5ddadee0516
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.36.0
+BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= %{gtk3_ver}
 BuildRequires:	gtk-doc >= 1.3
@@ -32,13 +32,13 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 # needed for gobject-introspection support (Gtk-3.0.gir -> Gdk-3.0.gir -> cairo-1.0.gir, which requires libcairo-gobject.so)
 BuildRequires:	cairo-gobject-devel
-Requires:	glib2 >= 1:2.36.0
+Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= %{gtk3_ver}
 Requires:	polkit-libs >= 0.97
 %if %{with appindicator}
 Requires:	libappindicator-gtk3 >= 0.0.13
 %endif
-#Provides:	PolicyKit-authentication-agent
+Obsoletes:	mate-polkit-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,21 +48,6 @@ polkit is a fork of GNOME polkit.
 %description -l pl.UTF-8
 Integracja uwierzytelniania polkit ze środowiskiem MATE. MATE polkit
 to odgałęzienie pakietu GNOME polkit.
-
-%package devel
-Summary:	Development files for mate-polkit library
-Summary(pl.UTF-8):	Pliki programistyczne biblioteki mate-polkit
-Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.36.0
-Requires:	gtk+3-devel >= %{gtk3_ver}
-Requires:	polkit-devel >= 0.97
-
-%description devel
-Development files for mate-polkit library.
-
-%description devel -l pl.UTF-8
-Pliki programistyczne biblioteki mate-polkit.
 
 %prep
 %setup -q
@@ -85,7 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpolkit-gtk-mate-1.la
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ku_IQ
 
 %find_lang %{name}
@@ -99,15 +83,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpolkit-gtk-mate-1.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpolkit-gtk-mate-1.so.0
-%{_libdir}/girepository-1.0/PolkitGtkMate-1.0.typelib
 %attr(755,root,root) %{_libexecdir}/polkit-mate-authentication-agent-1
 %{_sysconfdir}/xdg/autostart/polkit-mate-authentication-agent-1.desktop
-
-%files devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpolkit-gtk-mate-1.so
-%{_includedir}/polkit-gtk-mate-1
-%{_datadir}/gir-1.0/PolkitGtkMate-1.0.gir
-%{_pkgconfigdir}/polkit-gtk-mate-1.pc
