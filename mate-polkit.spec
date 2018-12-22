@@ -6,12 +6,12 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.20.1
+Version:	1.20.2
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	1ebd1f69ac259a1b8babefab5213dab7
+# Source0-md5:	2478a7226f6e394c972b2d196f904bfe
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,kab,ku_IQ,ur_PK}
 
 %find_lang %{name}
 
