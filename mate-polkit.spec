@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,kab,ku_IQ,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,ur_PK}
 
 %find_lang %{name}
 
