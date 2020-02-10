@@ -6,21 +6,20 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.22.0
+Version:	1.24.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	3cfeacfcfc89d79c8275b355bb778fe3
+Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
+# Source0-md5:	53fbb9dc28fda4656d968a2417570f3b
 URL:		http://wiki.mate-desktop.org/mate-polkit
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	gettext-tools >= 0.10.40
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= %{gtk3_ver}
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	intltool >= 0.35.0
 %if %{with appindicator}
 BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
 %endif
@@ -70,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ie,ku_IQ,ur_PK}
 
 %find_lang %{name}
 
