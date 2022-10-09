@@ -6,12 +6,12 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.26.0
+Version:	1.26.1
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	b59da614797acb49a9987046c75120a4
+# Source0-md5:	531016f7981470f416ed9cd72b891e6d
 URL:		https://wiki.mate-desktop.org/mate-desktop/components/mate-polkit/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
