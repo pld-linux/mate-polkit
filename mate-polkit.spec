@@ -6,12 +6,12 @@
 Summary:	Integrates polkit authentication for MATE desktop
 Summary(pl.UTF-8):	Integracja uwierzytelniania polkit ze środowiskiem MATE
 Name:		mate-polkit
-Version:	1.26.1
+Version:	1.28.1
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	531016f7981470f416ed9cd72b891e6d
+Source0:	https://pub.mate-desktop.org/releases/1.28/%{name}-%{version}.tar.xz
+# Source0-md5:	4cb48a238219a894b24e5395b75aac90
 URL:		https://wiki.mate-desktop.org/mate-desktop/components/mate-polkit/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
@@ -21,7 +21,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gtk+3-devel >= %{gtk3_ver}
 BuildRequires:	gtk-doc >= 1.3
 %if %{with appindicator}
-BuildRequires:	libappindicator-gtk3-devel >= 0.0.13
+BuildRequires:	libayatana-appindicator-gtk3-devel >= 0.0.13
 %endif
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	mate-common
@@ -35,7 +35,7 @@ Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= %{gtk3_ver}
 Requires:	polkit-libs >= 0.97
 %if %{with appindicator}
-Requires:	libappindicator-gtk3 >= 0.0.13
+Requires:	libayatana-appindicator-gtk3 >= 0.0.13
 %endif
 Obsoletes:	mate-polkit-devel < 1.20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
